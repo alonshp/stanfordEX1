@@ -48,6 +48,7 @@ class Concentration {
 		assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)) : Choosen index out of range")
 		if !cards[index].isMatched {
             flipCount += 1
+            //TODO check if there is a different between updateScoreWhenUnmatched and self.updateScoreWhenUnmatched (do both enter the getter?)
 			if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
 
                 let currTimeInterval = -lastDate.timeIntervalSinceNow
@@ -80,7 +81,7 @@ class Concentration {
                     updateScoreWhenUnmatched(index: index, matchIndex: matchIndex,badScoreBasedTime: badScoreBasedTime)
                 }
                 // Insert the card Id to the seen Id's array
-                seenIds.append(cards[index].identifier)
+                seenIds.append(cards[index].identifier) // TODO check if not a bug.. shouldn't we add both cards?
 				cards[index].isFaceUp = true
                 
 			} else {
@@ -89,6 +90,7 @@ class Concentration {
 		}
 	}
     
+    //TODO - change name to faceDownCard
     func faceUpCard(at index: Int){
         assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)) : Choosen index out of range")
         cards[index].isFaceUp = false
@@ -122,7 +124,7 @@ class Concentration {
         gameScore = 0
         flipCount = 0
         matchesLeft = numberOfPairsOfCards
-        lastDate = Date()
+        lastDate = Date()  
         seenIds = [Int]()
         shuffleCards()
     }

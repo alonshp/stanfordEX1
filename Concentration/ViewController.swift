@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 	private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     
     private var faceUpCardsNumbers = [Int]()
+    
+    private var currTheme = "Halloween"
 	
 	var numberOfPairsOfCards: Int {
 		return (cardButtons.count + 1) / 2
@@ -23,7 +25,8 @@ class ViewController: UIViewController {
     
 	@IBOutlet private var cardButtons: [UIButton]!
 	
-	
+    @IBOutlet weak var newGameButton: UIButton!
+    
 	@IBAction private func touchCard(_ sender: UIButton) {
 		if let cardNumber = cardButtons.index(of: sender) {
 			game.chooseCard(at: cardNumber)
@@ -72,7 +75,7 @@ class ViewController: UIViewController {
 				button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 			} else {
 				button.setTitle("", for: UIControlState.normal)
-				button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+				button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : ThemeCardsBackgroundColors[currTheme]
 			}
 		}
         
@@ -87,6 +90,9 @@ class ViewController: UIViewController {
                               "Faces": ["😀","🤣","😛","😖","😬","🤩","😭","😡"],
                               "Sports": ["⚽️","🏀","🏈","🎾","🎱","🏒","🥊","🏄‍♂️"],
                               "Halloween": ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]]
+    
+    private let ThemeBackgroudColors = ["Animals": #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), "Faces":#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1), "Sports": #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1), "Halloween":#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)]
+    private let ThemeCardsBackgroundColors = ["Animals": #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1), "Faces":#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), "Sports": #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1), "Halloween":#colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)]
     
     private var emojiNames: [String]{
         return [String](emojiThemes.keys)
@@ -109,7 +115,24 @@ class ViewController: UIViewController {
     private func updateEmojiTheme(){
         let choosedEmojiThemeNumber = emojiNames.count.arc4random
         if let choosedEmojies = emojiThemes[emojiNames[choosedEmojiThemeNumber]]{
+            currTheme = emojiNames[choosedEmojiThemeNumber]
             emojiChoices = choosedEmojies
+            changeGameTheme()
+        }
+    }
+    
+    private func changeGameTheme(){
+        view.backgroundColor = ThemeBackgroudColors[currTheme]
+        flipCountLabel.textColor = ThemeCardsBackgroundColors[currTheme]
+        gameScoreLable.textColor = ThemeCardsBackgroundColors[currTheme]
+        newGameButton.backgroundColor = ThemeCardsBackgroundColors[currTheme]
+        changeCardsBackgroundColor(color: ThemeCardsBackgroundColors[currTheme]!)
+    }
+    
+    private func changeCardsBackgroundColor(color: UIColor){
+        for index in cardButtons.indices {
+            let button = cardButtons[index]
+            button.backgroundColor = color
         }
     }
 }

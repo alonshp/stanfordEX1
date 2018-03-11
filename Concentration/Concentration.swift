@@ -32,7 +32,16 @@ class Concentration {
 		}
 	}
 	
-	func chooseCard(at index: Int) {
+    private func updateScoreWhenUnmatched(index: Int, matchIndex: Int) {
+        if seenIds.contains(cards[index].identifier){
+            gameScore -= 1
+        }
+        if seenIds.contains(cards[matchIndex].identifier){
+            gameScore -= 1
+        }
+    }
+    
+    func chooseCard(at index: Int) {
 		assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)) : Choosen index out of range")
 		if !cards[index].isMatched {
             flipCount += 1
@@ -43,13 +52,10 @@ class Concentration {
 					cards[index].isMatched = true
                     gameScore += 2
                 } else {
-                    if seenIds.contains(cards[index].identifier){
-                        gameScore -= 1
-                    }
-                    if seenIds.contains(cards[matchIndex].identifier){
-                        gameScore -= 1
-                    }
+                    // cards unmatched, update score if needed
+                    updateScoreWhenUnmatched(index: index, matchIndex: matchIndex)
                 }
+                // Insert the card Id to the seen Id's array
                 seenIds.append(cards[index].identifier)
 				cards[index].isFaceUp = true
 			} else {

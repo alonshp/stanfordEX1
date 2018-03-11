@@ -62,6 +62,14 @@ class Concentration {
         }
         cards = shuffeled
     }
+    
+    func startNewGame(){
+        for cardIndex in cards.indices {
+            cards[cardIndex].isFaceUp = false
+            cards[cardIndex].isMatched = false
+        }
+        shuffleCards()
+    }
 }
 
 

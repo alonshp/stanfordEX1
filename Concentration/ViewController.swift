@@ -35,6 +35,13 @@ class ViewController: UIViewController {
 			print("choosen card was not in cardButtons")
 		}
 	}
+    
+    @IBAction func startNewGame(_ sender: UIButton) {
+        flipCount = 0
+        game.startNewGame()
+        updateViewFromModel()
+    }
+    
 	
 	private func updateViewFromModel() {
 		for index in cardButtons.indices {

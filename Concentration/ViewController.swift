@@ -10,6 +10,8 @@ import UIKit
 class ViewController: UIViewController {
 	
 	private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+    
+    private var faceUpCardsNumbers = [Int]()
 	
 	var numberOfPairsOfCards: Int {
 		return (cardButtons.count + 1) / 2
@@ -25,10 +27,20 @@ class ViewController: UIViewController {
 	@IBAction private func touchCard(_ sender: UIButton) {
 		if let cardNumber = cardButtons.index(of: sender) {
 			game.chooseCard(at: cardNumber)
+            faceUpCardsNumbers.append(cardNumber)
 			updateViewFromModel()
 		} else {
 			print("choosen card was not in cardButtons")
 		}
+        if faceUpCardsNumbers.count == 2 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                for cardNumber in self.faceUpCardsNumbers {
+                    self.game.faceUpCard(at: cardNumber)
+                }
+                self.faceUpCardsNumbers = [Int]()
+                self.updateViewFromModel()
+            }
+        }
 	}
     
     @IBAction func startNewGame(_ sender: UIButton) {
@@ -59,7 +71,7 @@ class ViewController: UIViewController {
         flipCountLabel.text = "Flips: \(currFlipsCount)"
     }
 	
-    private var emojiThemes = ["Animals": ["🐶","🐭","🐤","🐒","🐝","🐞","🐠","🦔"],
+    private let emojiThemes = ["Animals": ["🐶","🐭","🐤","🐒","🐝","🐞","🐠","🦔"],
                               "Faces": ["😀","🤣","😛","😖","😬","🤩","😭","😡"],
                               "Sports": ["⚽️","🏀","🏈","🎾","🎱","🏒","🥊","🏄‍♂️"],
                               "Halloween": ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]]
@@ -74,6 +86,7 @@ class ViewController: UIViewController {
     
 	private func emoji(for card: Card) -> String {
         // pick emoji for card
+       
 		if emoji[card.identifier] == nil, emojiChoices.count > 0 {
 			emoji[card.identifier] = emojiChoices.remove(at: emojiChoices.count.arc4random)
 		}

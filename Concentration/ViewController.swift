@@ -30,18 +30,23 @@ class ViewController: UIViewController {
 	@IBAction private func touchCard(_ sender: UIButton) {
 		if let cardNumber = cardButtons.index(of: sender) {
 			game.chooseCard(at: cardNumber)
-            faceUpCardsNumbers.append(cardNumber)
+            if !faceUpCardsNumbers.contains(cardNumber){
+                faceUpCardsNumbers.append(cardNumber)
+            }
 			updateViewFromModel()
 		} else {
 			print("choosen card was not in cardButtons")
 		}
         if faceUpCardsNumbers.count == 2 {
+            view.isUserInteractionEnabled = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 for cardNumber in self.faceUpCardsNumbers {
                     self.game.faceUpCard(at: cardNumber)
                 }
                 self.faceUpCardsNumbers = [Int]()
                 self.updateViewFromModel()
+                
+                self.view.isUserInteractionEnabled = true
                 
                 // check if the player finished
                 if self.game.matchesLeft == 0 {

@@ -140,8 +140,8 @@
                                 <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKv-Jr-c0k">
-                                <rect key="frame" x="84" y="637" width="207" height="52"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKv-Jr-c0k">
+                                <rect key="frame" x="124" y="642" width="127" height="42"/>
                                 <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="New Game">
@@ -154,16 +154,15 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="hKv-Jr-c0k" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Lgr-Vc-f7x" secondAttribute="bottom" constant="8" symbolic="YES" id="53P-Fj-jgZ"/>
                             <constraint firstItem="xgj-y4-qbj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Bd1-SN-5k1"/>
-                            <constraint firstItem="hKv-Jr-c0k" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="84" id="Zh2-Vp-UbZ"/>
+                            <constraint firstItem="xgj-y4-qbj" firstAttribute="top" secondItem="hKv-Jr-c0k" secondAttribute="bottom" constant="30" id="S1D-2V-rcQ"/>
                             <constraint firstItem="Lgr-Vc-f7x" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="cy1-3u-I9U"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hKv-Jr-c0k" secondAttribute="trailing" constant="84" id="dFy-iC-RHK"/>
-                            <constraint firstItem="xgj-y4-qbj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Lgr-Vc-f7x" secondAttribute="bottom" constant="8" symbolic="YES" id="eaM-go-66g"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xgj-y4-qbj" secondAttribute="bottom" constant="16" id="gNX-YU-NdV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lgr-Vc-f7x" secondAttribute="trailing" constant="16" id="i5v-tJ-5zh"/>
                             <constraint firstItem="Lgr-Vc-f7x" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="iIV-78-a3X"/>
-                            <constraint firstItem="xgj-y4-qbj" firstAttribute="top" secondItem="hKv-Jr-c0k" secondAttribute="bottom" constant="25" id="yTR-lw-v2m"/>
+                            <constraint firstItem="hKv-Jr-c0k" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Lgr-Vc-f7x" secondAttribute="bottom" constant="8" symbolic="YES" id="nC1-2c-AdE"/>
+                            <constraint firstItem="hKv-Jr-c0k" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tlZ-Ne-o98"/>
+                            <constraint firstItem="hKv-Jr-c0k" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vb5-s4-9Ch"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -185,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.74384236453201"/>
+            <point key="canvasLocation" x="136.5" y="133"/>
         </scene>
     </scenes>
 </document>

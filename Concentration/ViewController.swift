@@ -39,6 +39,8 @@ class ViewController: UIViewController {
     @IBAction func startNewGame(_ sender: UIButton) {
         flipCount = 0
         game.startNewGame()
+        emoji = [Int: String]()
+        updateEmojiTheme()
         updateViewFromModel()
     }
     
@@ -58,16 +60,30 @@ class ViewController: UIViewController {
 		
 	}
 	
-	private var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]
-	
-	private var emoji = [Int: String]()
-	
+    private var emojiThemes = ["Animals": ["🐶","🐭","🐤","🐒","🐝","🐞","🐠","🦔"],
+                              "Faces": ["😀","🤣","😛","😖","😬","🤩","😭","😡"],
+                              "Sports": ["⚽️","🏀","🏈","🎾","🎱","🏒","🥊","🏄‍♂️"],
+                              "Halloween": ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]]
+    
+    private var emojiNames = ["Animals", "Faces", "Sports", "Halloween"]
+    
+    private var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]
+    
+    private var emoji = [Int: String]()
+    
 	private func emoji(for card: Card) -> String {
 		if emoji[card.identifier] == nil, emojiChoices.count > 0 {
 			emoji[card.identifier] = emojiChoices.remove(at: emojiChoices.count.arc4random)
 		}
 		return emoji[card.identifier] ?? "?"
 	}
+    
+    func updateEmojiTheme(){
+        let choosedEmojiThemeNumber = emojiNames.count.arc4random
+        if let choosedEmojies = emojiThemes[emojiNames[choosedEmojiThemeNumber]]{
+            emojiChoices = choosedEmojies
+        }
+    }
 }
 
 extension Int {

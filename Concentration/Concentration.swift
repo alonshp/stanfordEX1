@@ -10,6 +10,9 @@ import Foundation
 class Concentration {
 	
 	private(set) var cards = [Card]()
+    var gameScore = 0
+    private var seenIds = [Int]()
+    
 	private var indexOfOneAndOnlyFaceUpCard: Int? {
 		get {
 			var foundIndex: Int?
@@ -26,7 +29,6 @@ class Concentration {
 				cards[index].isFaceUp = (index == newValue)
 			}
 		}
-				
 	}
 	
 	func chooseCard(at index: Int) {
@@ -37,11 +39,20 @@ class Concentration {
 				if cards[matchIndex].identifier == cards[index].identifier {
 					cards[matchIndex].isMatched = true
 					cards[index].isMatched = true
-				}
+                    gameScore += 2
+                } else {
+                    if seenIds.contains(cards[index].identifier){
+                        gameScore -= 1
+                    }
+                    if seenIds.contains(cards[matchIndex].identifier){
+                        gameScore -= 1
+                    }
+                }
+                seenIds.append(cards[index].identifier)
 				cards[index].isFaceUp = true
 			} else {
 				indexOfOneAndOnlyFaceUpCard = index
-			}
+            }
 		}
 	}
 	
@@ -68,6 +79,8 @@ class Concentration {
             cards[cardIndex].isFaceUp = false
             cards[cardIndex].isMatched = false
         }
+        gameScore = 0
+        seenIds = [Int]()
         shuffleCards()
     }
 }

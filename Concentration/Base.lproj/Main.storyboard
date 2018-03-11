@@ -134,14 +134,25 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgj-y4-qbj">
-                                <rect key="frame" x="125.66666666666666" y="714" width="123.66666666666666" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="D5m-xA-PzS">
+                                <rect key="frame" x="39" y="711" width="296.33333333333331" height="48"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgj-y4-qbj">
+                                        <rect key="frame" x="0.0" y="0.0" width="144.33333333333334" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lgc-Yy-uVJ">
+                                        <rect key="frame" x="152.33333333333334" y="0.0" width="144.00000000000003" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKv-Jr-c0k">
-                                <rect key="frame" x="124" y="642" width="127" height="42"/>
+                                <rect key="frame" x="124" y="619" width="127" height="42"/>
                                 <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="New Game">
@@ -154,13 +165,14 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="xgj-y4-qbj" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Bd1-SN-5k1"/>
-                            <constraint firstItem="xgj-y4-qbj" firstAttribute="top" secondItem="hKv-Jr-c0k" secondAttribute="bottom" constant="30" id="S1D-2V-rcQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="D5m-xA-PzS" secondAttribute="bottom" constant="19" id="51C-eg-2u3"/>
+                            <constraint firstItem="D5m-xA-PzS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="39" id="Fwb-4o-HaQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="D5m-xA-PzS" secondAttribute="trailing" constant="39.666666666666686" id="Fzs-SY-JOA"/>
+                            <constraint firstItem="D5m-xA-PzS" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="S2S-31-qPm"/>
+                            <constraint firstItem="D5m-xA-PzS" firstAttribute="top" secondItem="hKv-Jr-c0k" secondAttribute="bottom" constant="50" id="SYz-jo-zmN"/>
                             <constraint firstItem="Lgr-Vc-f7x" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="cy1-3u-I9U"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xgj-y4-qbj" secondAttribute="bottom" constant="16" id="gNX-YU-NdV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Lgr-Vc-f7x" secondAttribute="trailing" constant="16" id="i5v-tJ-5zh"/>
                             <constraint firstItem="Lgr-Vc-f7x" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="iIV-78-a3X"/>
-                            <constraint firstItem="hKv-Jr-c0k" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Lgr-Vc-f7x" secondAttribute="bottom" constant="8" symbolic="YES" id="nC1-2c-AdE"/>
                             <constraint firstItem="hKv-Jr-c0k" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tlZ-Ne-o98"/>
                             <constraint firstItem="hKv-Jr-c0k" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vb5-s4-9Ch"/>
                         </constraints>
@@ -168,6 +180,7 @@
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="xgj-y4-qbj" id="Imy-Mg-ppo"/>
+                        <outlet property="gameScoreLable" destination="lgc-Yy-uVJ" id="MsT-Ef-JRa"/>
                         <outletCollection property="cardButtons" destination="xJU-cy-BUH" collectionClass="NSMutableArray" id="17O-e2-uV9"/>
                         <outletCollection property="cardButtons" destination="B9O-Ih-wOw" collectionClass="NSMutableArray" id="WC9-ot-UGN"/>
                         <outletCollection property="cardButtons" destination="TLp-WM-31Y" collectionClass="NSMutableArray" id="UaF-xG-ssm"/>
@@ -184,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.5" y="133"/>
+            <point key="canvasLocation" x="135.19999999999999" y="132.26600985221674"/>
         </scene>
     </scenes>
 </document>

@@ -22,7 +22,9 @@ class ViewController: UIViewController {
 	}
 	
 	@IBOutlet private weak var flipCountLabel: UILabel!
-	
+    
+    @IBOutlet weak var gameScoreLable: UILabel!
+    
 	@IBOutlet private var cardButtons: [UIButton]!
 	
 	
@@ -57,8 +59,10 @@ class ViewController: UIViewController {
 				button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
 			}
 		}
-		
-	}
+        
+        let currGameScore = game.gameScore
+        gameScoreLable.text = "Score: \(currGameScore)"
+    }
 	
     private var emojiThemes = ["Animals": ["🐶","🐭","🐤","🐒","🐝","🐞","🐠","🦔"],
                               "Faces": ["😀","🤣","😛","😖","😬","🤩","😭","😡"],

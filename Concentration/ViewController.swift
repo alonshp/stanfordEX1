@@ -27,23 +27,33 @@ class ViewController: UIViewController {
 	
     @IBOutlet weak var newGameButton: UIButton!
     
-	@IBAction private func touchCard(_ sender: UIButton) {
-        // TODO if "if" condition is true 99.99% of time - use guard instead
-		if let cardNumber = cardButtons.index(of: sender) {
-			game.chooseCard(at: cardNumber)
-            if !faceUpCardsNumbers.contains(cardNumber){
-                faceUpCardsNumbers.append(cardNumber)
-            }
-			updateViewFromModel()
-		} else {
-			print("choosen card was not in cardButtons")
-            //TODO un-expected error - you have to return
-		}
+    private func showAlertWhenGameFinished() {
+        // create the alert
+        let alert = UIAlertController(title: "Congratulations!", message: "Your Final Score: \(self.game.gameScore)", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction private func touchCard(_ sender: UIButton) {
+        guard let cardNumber = cardButtons.index(of: sender) else {
+            print("choosen card was not in cardButtons")
+            return
+        }
+        game.chooseCard(at: cardNumber)
+        if !faceUpCardsNumbers.contains(cardNumber){
+            faceUpCardsNumbers.append(cardNumber)
+        }
+        updateViewFromModel()
+
         if faceUpCardsNumbers.count == 2 {
             view.isUserInteractionEnabled = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 for cardNumber in self.faceUpCardsNumbers {
-                    self.game.faceUpCard(at: cardNumber)
+                    self.game.faceDownCard(at: cardNumber)
                 }
                 self.faceUpCardsNumbers = [Int]()
                 self.updateViewFromModel()
@@ -52,14 +62,7 @@ class ViewController: UIViewController {
                 
                 // check if the player finished
                 if self.game.matchesLeft == 0 {
-                    // create the alert
-                    let alert = UIAlertController(title: "Congratulations!", message: "Your Final Score: \(self.game.gameScore)", preferredStyle: UIAlertControllerStyle.alert)
-                    
-                    // add an action (button)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
-                    
-                    // show the alert
-                    self.present(alert, animated: true, completion: nil)
+                    self.showAlertWhenGameFinished()
                 }
             }
         }
@@ -111,7 +114,6 @@ class ViewController: UIViewController {
     
 	private func emoji(for card: Card) -> String {
         // pick emoji for card
-       
 		if emoji[card.identifier] == nil, emojiChoices.count > 0 {
 			emoji[card.identifier] = emojiChoices.remove(at: emojiChoices.count.arc4random)
 		}
@@ -141,12 +143,6 @@ class ViewController: UIViewController {
         for button in cardButtons {
             button.backgroundColor = color
         }
-        /*
-        for index in cardButtons.indices {
-            let button = cardButtons[index]
-            button.backgroundColor = color
-        }
-         */
     }
 }
 

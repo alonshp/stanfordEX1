@@ -65,7 +65,9 @@ class ViewController: UIViewController {
                               "Sports": ["⚽️","🏀","🏈","🎾","🎱","🏒","🥊","🏄‍♂️"],
                               "Halloween": ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]]
     
-    private var emojiNames = ["Animals", "Faces", "Sports", "Halloween"]
+    private var emojiNames: [String]{
+        return [String](emojiThemes.keys)
+    }
     
     private var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]
     

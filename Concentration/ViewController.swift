@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var newGameButton: UIButton!
     
 	@IBAction private func touchCard(_ sender: UIButton) {
+        // TODO if "if" condition is true 99.99% of time - use guard instead
 		if let cardNumber = cardButtons.index(of: sender) {
 			game.chooseCard(at: cardNumber)
             if !faceUpCardsNumbers.contains(cardNumber){
@@ -36,6 +37,7 @@ class ViewController: UIViewController {
 			updateViewFromModel()
 		} else {
 			print("choosen card was not in cardButtons")
+            //TODO un-expected error - you have to return
 		}
         if faceUpCardsNumbers.count == 2 {
             view.isUserInteractionEnabled = false
@@ -54,7 +56,7 @@ class ViewController: UIViewController {
                     let alert = UIAlertController(title: "Congratulations!", message: "Your Final Score: \(self.game.gameScore)", preferredStyle: UIAlertControllerStyle.alert)
                     
                     // add an action (button)
-                    alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
                     
                     // show the alert
                     self.present(alert, animated: true, completion: nil)
@@ -135,10 +137,16 @@ class ViewController: UIViewController {
     }
     
     private func changeCardsBackgroundColor(color: UIColor){
+        
+        for button in cardButtons {
+            button.backgroundColor = color
+        }
+        /*
         for index in cardButtons.indices {
             let button = cardButtons[index]
             button.backgroundColor = color
         }
+         */
     }
 }
 

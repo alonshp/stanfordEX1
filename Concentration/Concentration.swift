@@ -12,6 +12,8 @@ class Concentration {
 	private(set) var cards = [Card]()
     var gameScore = 0
     var flipCount = 0
+    var matchesLeft = 0
+    var numberOfPairsOfCards = 0
     private var seenIds = [Int]()
     
 	private var indexOfOneAndOnlyFaceUpCard: Int? {
@@ -51,6 +53,7 @@ class Concentration {
 					cards[matchIndex].isMatched = true
 					cards[index].isMatched = true
                     gameScore += 2
+                    matchesLeft -= 1
                 } else {
                     // cards unmatched, update score if needed
                     updateScoreWhenUnmatched(index: index, matchIndex: matchIndex)
@@ -71,6 +74,8 @@ class Concentration {
 	
 	init(numberOfPairsOfCards: Int) {
 		assert(numberOfPairsOfCards > 0, "Concentration.init(\(numberOfPairsOfCards)) : You must have at least one pair of cards")
+        matchesLeft = numberOfPairsOfCards
+        self.numberOfPairsOfCards = numberOfPairsOfCards
 		for _ in 1...numberOfPairsOfCards {
 			let card = Card()
 			cards += [card, card]
@@ -94,6 +99,7 @@ class Concentration {
         }
         gameScore = 0
         flipCount = 0
+        matchesLeft = numberOfPairsOfCards
         seenIds = [Int]()
         shuffleCards()
     }

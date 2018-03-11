@@ -39,6 +39,18 @@ class ViewController: UIViewController {
                 }
                 self.faceUpCardsNumbers = [Int]()
                 self.updateViewFromModel()
+                
+                // check if the player finished
+                if self.game.matchesLeft == 0 {
+                    // create the alert
+                    let alert = UIAlertController(title: "Congratulations!", message: "Your Final Score: \(self.game.gameScore)", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    // add an action (button)
+                    alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+                    
+                    // show the alert
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
 	}

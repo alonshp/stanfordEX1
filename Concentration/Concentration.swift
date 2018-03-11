@@ -51,8 +51,17 @@ class Concentration {
 			let card = Card()
 			cards += [card, card]
 		}
-	//	TODO: Shuffle the cards
+        // Shuffle the cards
+        shuffleCards()
 	}
+    
+    func shuffleCards(){
+        var shuffeled = [Card]()
+        while !cards.isEmpty {
+            shuffeled.append(cards.remove(at: cards.count.arc4random))
+        }
+        cards = shuffeled
+    }
 }
 
 
